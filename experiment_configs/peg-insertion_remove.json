@@ -1,0 +1,160 @@
+{
+    "iteration_steps": 1500000,
+    "seed": 1337,
+    "json": {
+        "dir_name": "~/autoreset_rl/experiment_results",
+        "file_name": {
+            "prefix": "pir",
+            "postfix": ""
+        }
+    },
+    "env": {
+        "action_dim": 7,
+        "name": "peg-insertion(remove)",
+        "obs_dim": 14
+    },
+    "logger": {
+        "dir_name": "~/autoreset_rl/experiment_results",
+        "file_name": {
+            "prefix": "pir",
+            "postfix": ""
+        }
+    },
+    "algo": {
+        "max_reset_attempts": 2,
+        "p_threshold": 0.10,
+        "forward": {
+            "ddpg": {
+                "batch_size": 64,
+                "discount": 0.99,
+                "heatup_steps": 1000,
+                "max_episode_length": 100,
+                "actor": {
+                    "learning_rate": 0.0001,
+                    "number_of_actors": 1,
+                    "tau": 0.001,
+                    "exploration": {
+                        "xlim": 0,
+                        "mu": 0,
+                        "theta": 0.15,
+                        "sigma": 0.2,
+                        "dt": 0.05
+                    },
+                    "layer_specs": [
+                        {"input_dim": 14, "output_dim": 400, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 400, "output_dim": 300, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 300, "output_dim": 7, "activation": "tf.nn.tanh", "initializer": "tf.contrib.layers.xavier_initializer()"}
+                    ],
+                    "priors": {
+                        "beta": 0,
+                        "use_prior": 0
+                    }
+                },
+                "buffer": {
+                    "max_number_of_transitions": 500000 
+                },
+                "critic": {
+                    "learning_rate": 0.001,
+                    "number_of_critics": 1,
+                    "tau": 0.001,
+                    "weight_decay_rate": 0.0,
+                    "layer_specs": [
+                        {"input_dim": 14, "output_dim": 400, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 407, "output_dim": 300, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 300, "output_dim": 1, "activation": "None", "initializer": "tf.contrib.layers.xavier_initializer()"}
+                    ],
+                    "priors": {
+                        "beta": 0,
+                        "use_prior": 0
+                    }
+                }
+            },
+            "env": {
+                "action_dim": 7,
+                "name": "peg-insertion(remove)",
+                "obs_dim": 14
+            },
+            "logger": {
+                "dir_name": "~/autoreset_rl/experiment_results",
+                "file_name": {
+                    "prefix": "pir",
+                    "postfix": "forward"
+                }
+            }
+        },
+        "reset": {
+            "classifier": {
+                "n_step": 10,
+                "q_combinator": "min",
+                "action_grad_q_combinator": "min"
+            },
+            "ddpg": {
+                "batch_size": 256,
+                "discount": 0.99,
+                "heatup_steps": 1000,
+                "max_episode_length": 100,
+                "actor": {
+                    "learning_rate": 0.0001,
+                    "number_of_actors": 1,
+                    "tau": 0.001,
+                    "exploration": {
+                        "xlim": 0,
+                        "mu": 0,
+                        "theta": 0.15,
+                        "sigma": 0.2,
+                        "dt": 0.05
+                    },
+                    "layer_specs": [
+                        {"input_dim": 14, "output_dim": 400, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 400, "output_dim": 300, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 300, "output_dim": 7, "activation": "tf.nn.tanh", "initializer": "tf.contrib.layers.xavier_initializer()"}
+                    ],
+                    "priors": {
+                        "beta": 0,
+                        "use_prior": 0
+                    }
+                },
+                "buffer": {
+                    "max_number_of_transitions": 500000 
+                },
+                "critic": {
+                    "episodic_update": 0,
+                    "learning_rate": 0.001,
+                    "loss": "rce",
+                    "output_type": "sigmoid",
+                    "clip_label": 1,
+                    "clip_tdloss_weight": 1,
+                    "objective_type": "q",
+                    "number_of_critics": 5,
+                    "tau": 0.001,
+                    "weight_decay_rate": 0.0,
+                    "layer_specs": [
+                        {"input_dim": 14, "output_dim": 400, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 407, "output_dim": 300, "activation": "tf.nn.relu", "initializer": "tf.contrib.layers.xavier_initializer()"},
+                        {"input_dim": 300, "output_dim": 1, "activation": "None", "initializer": "tf.contrib.layers.xavier_initializer()"}
+                    ],
+                    "priors": {
+                        "beta": 3,
+                        "use_prior": 1
+                    }
+                }
+            },
+            "goal": {
+                "number_of_examples": 1,
+                "number_of_validation_examples": 1000
+            },
+            "env": {
+                "action_dim": 7,
+                "name": "peg-insertion(remove)",
+                "obs_dim": 14
+            },
+            "logger": {
+                "dir_name": "~/autoreset_rl/experiment_results",
+                "file_name": {
+                    "prefix": "pir",
+                    "postfix": "reset"
+                }
+            }
+        }
+    }
+}
