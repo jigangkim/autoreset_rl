@@ -1,8 +1,10 @@
 # Automating Reinforcement Learning with Example-based Resets
 
-Source code for the proposed algorithm for RA-L submission "Automating Reinforcement Learning with Example-based Resets".
+### Accepted for publication in the IEEE Robotics and Automation Letters (RA-L)
 
-The instructions were tested on Ubuntu 18.04, but should work on other Linux distros as well.
+Source code for reproducing the simulation results for the proposed algorithm of the paper ["Automating Reinforcement Learning with Example-based Resets"](https://arxiv.org/abs/2204.02041).
+
+The instructions below were tested on Ubuntu 18.04, but should work on other Linux distros as well.
 
 ## Installation
 
@@ -57,3 +59,9 @@ python main.py --help
 ```
 
 If the contents of this folder are not under ```~/autoreset_rl/```, please modify the experiment config files (JSON) accordingly.
+
+## BibTeX
+
+```bibtex
+To appear
+```
