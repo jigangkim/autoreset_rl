@@ -63,5 +63,14 @@ If the contents of this folder are not under ```~/autoreset_rl/```, please modif
 ## BibTeX
 
 ```bibtex
-To appear
+@article{kim2022automating,
+  title={Automating Reinforcement Learning With Example-Based Resets},
+  author={Kim, Jigang and Park, J. hyeon and Cho, Daesol and Kim, H. Jin},
+  journal={IEEE Robotics and Automation Letters},
+  volume={7},
+  number={3},
+  pages={6606-6613},
+  year={2022},
+  publisher={IEEE}
+}
 ```
